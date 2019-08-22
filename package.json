@@ -4,8 +4,9 @@
   "description": "Axios with express/koa like middleware",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "parcel ./example/index.html"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start:dev": "parcel ./example/index.html",
+    "lint": "eslint ./src"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,12 @@
   "bugs": {
     "url": "https://github.com/krutoo/axios-middleware/issues"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
+    }
+  },
   "homepage": "https://github.com/krutoo/axios-middleware#readme",
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -30,6 +37,7 @@
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "eslint": "^6.2.1",
+    "husky": "^3.0.4",
     "parcel-bundler": "^1.12.3"
   },
   "dependencies": {
