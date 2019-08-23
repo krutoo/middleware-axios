@@ -32,7 +32,7 @@ const api = wrapInstance(create({
 }));
 
 // add middleware if you want
-api.use('get', next => async requestConfig => {
+api.use(next => async requestConfig => {
   // do something before request start...
   await next(requestConfig); // calling next is required
   // ...and do something after
