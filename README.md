@@ -6,13 +6,13 @@ Axios with express/koa like middleware
 
 ## Install
 
-Using npm (coming soon):
+Using npm:
 
 ```bash
 npm install --save axios-middleware
 ```
 
-Using yarn (coming soon):
+Using yarn:
 
 ```bash
 yarn add axios-middleware
