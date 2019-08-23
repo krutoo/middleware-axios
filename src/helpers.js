@@ -2,7 +2,7 @@ import mergeConfig from 'axios/lib/core/mergeConfig.js';
 import { WITH_BODY_METHODS } from './constants.js';
 
 export const isWithBody = methodName => WITH_BODY_METHODS
-  .includes(methodName);
+  .includes(String(methodName).toLowerCase());
 
 export const mapWithBodyArgsToConfig = (method, [
   url,
