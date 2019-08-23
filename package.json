@@ -4,7 +4,7 @@
   "description": "Axios with express/koa like middleware",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "jest",
     "lint": "eslint ./src",
     "start:dev": "parcel ./example/index.html"
   },
@@ -33,9 +33,11 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@types/jest": "^24.0.18",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "eslint": "^6.2.1",
+    "eslint-plugin-jest": "^22.15.2",
     "husky": "^3.0.4",
     "jest": "^24.9.0",
     "parcel-bundler": "^1.12.3"
