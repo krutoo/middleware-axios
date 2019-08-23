@@ -15,10 +15,10 @@ export const wrapInstance = axiosInstance => {
   const innerMethods = METHOD_NAMES.reduce(
     (kit, methodName) => {
       // by default each method is plain request()
-      kit[methodName] = request;
+      kit[methodName] = config => kit.request(config);
       return kit;
     },
-    {}
+    { request }
   );
 
   /*
@@ -36,27 +36,25 @@ export const wrapInstance = axiosInstance => {
       return kit;
     }, {});
 
-  const useMiddleware = (methodName, middleware) => {
-    if (METHOD_NAMES.includes(methodName)) {
-      /*
-       * save reference on original method
-       * in scope of wrapped method
-       */
-      const originalMethod = innerMethods[methodName];
-      const wrappedMethod = middleware(
-        // aka next
-        requestConfig => new Promise((resolve, reject) => {
-          originalPromise = originalMethod(requestConfig);
-          originalPromise.then(resolve, reject);
-        })
-      );
-      let originalPromise = null;
+  const useMiddleware = (middleware) => {
+    /*
+      * save reference on original method
+      * in scope of wrapped method
+      */
+    const originalMethod = innerMethods.request;
+    const wrappedMethod = middleware(
+      // aka next
+      requestConfig => new Promise((resolve, reject) => {
+        originalPromise = originalMethod(requestConfig);
+        originalPromise.then(resolve, reject);
+      })
+    );
+    let originalPromise = null;
 
-      innerMethods[methodName] = async requestConfig => {
-        await wrappedMethod(requestConfig);
-        return originalPromise;
-      };
-    }
+    innerMethods.request = async requestConfig => {
+      await wrappedMethod(requestConfig);
+      return originalPromise;
+    };
 
     return wrapper;
   };
@@ -64,7 +62,6 @@ export const wrapInstance = axiosInstance => {
   const wrapper = {
     axiosInstance,
     use: useMiddleware,
-    request,
     ...publicMethods,
   };
 

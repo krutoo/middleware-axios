@@ -29,9 +29,12 @@ export const createBoundMethod = (
   innerMethods,
   baseConfig
 ) => {
-  const mapArgsToConfig = isWithBody(methodName)
+  const argsMapper = isWithBody(methodName)
     ? mapWithBodyArgsToConfig
     : mapWithoutBodyArgsToConfig;
+  const mapArgsToConfig = methodName === 'request'
+    ? (name, args) => args
+    : argsMapper;
 
   const boundMethod = (...args) => {
     // get actual method from mutable object
