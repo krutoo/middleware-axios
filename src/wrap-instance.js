@@ -14,6 +14,7 @@ export const wrapInstance = axiosInstance => {
   // this methods object will be mutates by useMiddleware()
   const innerMethods = METHOD_NAMES.reduce(
     (kit, methodName) => {
+      // by default each method is plain request()
       kit[methodName] = request;
       return kit;
     },
@@ -34,9 +35,6 @@ export const wrapInstance = axiosInstance => {
 
       return kit;
     }, {});
-
-  publicMethods.getUri = config => axiosInstance
-    .getUri(config);
 
   const useMiddleware = (methodName, middleware) => {
     if (METHOD_NAMES.includes(methodName)) {

@@ -35,7 +35,7 @@ api.use('get', next => async requestConfig => {
   // ...and do something after
 });
 
-// use like normal axios
+// use almost like normal axios
 api.get('/user/12345').then(response => {
   console.log(response.data);
   console.log(response.status);
@@ -43,5 +43,7 @@ api.get('/user/12345').then(response => {
   console.log(response.headers);
   console.log(response.config);
 });
+
+console.log(api.axiosInstance); // pure instance
 
 ```
