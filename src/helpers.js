@@ -33,7 +33,7 @@ export const createBoundMethod = (
     ? mapWithBodyArgsToConfig
     : mapWithoutBodyArgsToConfig;
   const mapArgsToConfig = methodName === 'request'
-    ? (name, args) => args
+    ? (methodName, args) => args
     : argsMapper;
 
   const boundMethod = (...args) => {
