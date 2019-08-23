@@ -1,4 +1,4 @@
-# axios-middleware
+# middleware-axios
 Axios with express/koa like middleware
 
 ![Coverage branches](./badges/badge-branches.svg)
