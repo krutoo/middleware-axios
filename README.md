@@ -1,6 +1,9 @@
 # axios-middleware
 Axios with express/koa like middleware
 
+![Coverage branches](./badges/badge-branches.svg)
+![Coverage statements](./badges/badge-statements.svg)
+
 ## Install
 
 Using npm (coming soon):

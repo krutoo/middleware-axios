@@ -4,8 +4,10 @@
   "description": "Axios with express/koa like middleware",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest",
     "lint": "eslint ./src",
+    "test": "jest",
+    "test:coverage": "npm test -- --coverage",
+    "test:badges": "npm run test:coverage && jest-coverage-badges --output './badges'",
     "start:dev": "parcel ./example/index.html"
   },
   "repository": {
@@ -26,7 +28,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
+      "pre-push": "npm run test:badges"
     }
   },
   "homepage": "https://github.com/krutoo/axios-middleware#readme",
