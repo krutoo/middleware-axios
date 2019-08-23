@@ -12,7 +12,7 @@ Using npm (coming soon):
 npm install --save axios-middleware
 ```
 
-Using yarn:
+Using yarn (coming soon):
 
 ```bash
 yarn add axios-middleware
