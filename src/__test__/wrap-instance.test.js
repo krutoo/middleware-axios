@@ -50,4 +50,20 @@ describe('wrapInstance()', () => {
     wrapper.request({});
     expect(fakeAxiosInstance.request).toHaveBeenCalledTimes(8);
   });
+  it('wrapper.use should wrap each request method', async () => {
+    const spyBefore = jest.fn();
+    const spyAfter = jest.fn();
+    const wrapper = wrapInstance(fakeAxiosInstance);
+    wrapper.use(next => async requestConfig => {
+      spyBefore();
+      await next(requestConfig);
+      spyAfter();
+    });
+
+    expect(spyBefore).toHaveBeenCalledTimes(0);
+    expect(spyAfter).toHaveBeenCalledTimes(0);
+    await wrapper.get('articles/');
+    expect(spyBefore).toHaveBeenCalledTimes(1);
+    expect(spyAfter).toHaveBeenCalledTimes(1);
+  });
 });
