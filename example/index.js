@@ -38,7 +38,7 @@ async function testWrapped () {
     '/posts',
     {
       params: {
-        userId: 1,
+        userId: 2,
       },
     }
   );
