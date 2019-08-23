@@ -47,3 +47,17 @@ api.get('/user/12345').then(response => {
 console.log(api.axiosInstance); // pure instance
 
 ```
+
+### Instance methods
+
+The available instance methods are listed below.
+Each method works like in original axios instance.
+
+##### axios.request(config)
+##### axios.get(url[, config])
+##### axios.delete(url[, config])
+##### axios.head(url[, config])
+##### axios.options(url[, config])
+##### axios.post(url[, data[, config]])
+##### axios.put(url[, data[, config]])
+##### axios.patch(url[, data[, config]])
