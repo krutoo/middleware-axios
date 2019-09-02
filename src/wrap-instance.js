@@ -45,6 +45,7 @@ export const wrapInstance = axiosInstance => {
 
     innerMethods.request = async requestConfig => {
       let originalPromise = null;
+
       await middleware(
         requestConfig,
 
@@ -54,6 +55,7 @@ export const wrapInstance = axiosInstance => {
           originalPromise.then(resolve, reject);
         })
       );
+
       return originalPromise;
     };
 
