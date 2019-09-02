@@ -42,6 +42,7 @@
     "eslint-plugin-jest": "^22.15.2",
     "husky": "^3.0.4",
     "jest": "^24.9.0",
+    "jest-coverage-badges": "^1.1.2",
     "parcel-bundler": "^1.12.3"
   },
   "dependencies": {
