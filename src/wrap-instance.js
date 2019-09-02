@@ -36,23 +36,24 @@ export const wrapInstance = axiosInstance => {
       return kit;
     }, {});
 
-  const useMiddleware = (middleware) => {
+  const useMiddleware = middleware => {
     /*
       * save reference on original method
       * in scope of wrapped method
       */
     const originalMethod = innerMethods.request;
-    const wrappedMethod = middleware(
-      // aka next
-      requestConfig => new Promise((resolve, reject) => {
-        originalPromise = originalMethod(requestConfig);
-        originalPromise.then(resolve, reject);
-      })
-    );
-    let originalPromise = null;
 
     innerMethods.request = async requestConfig => {
-      await wrappedMethod(requestConfig);
+      let originalPromise = null;
+      await middleware(
+        requestConfig,
+
+        // aka next
+        requestConfig => new Promise((resolve, reject) => {
+          originalPromise = originalMethod(requestConfig);
+          originalPromise.then(resolve, reject);
+        })
+      );
       return originalPromise;
     };
 

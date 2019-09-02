@@ -2,7 +2,6 @@ import 'babel-polyfill';
 import { create } from 'axios';
 import { wrapInstance } from '../src/index.js';
 
-console.log('Demo started, click on page to load...');
 
 const pureApi = create({
   baseURL: 'https://jsonplaceholder.typicode.com/',
@@ -15,19 +14,19 @@ const wrappedApi = wrapInstance(create({
 }));
 
 wrappedApi
-  .use(next => async requestConfig => {
+  .use(async (requestConfig, next) => {
     console.log('start middleware #1');
     const startTime = performance.now();
     await next(requestConfig);
     console.log('request duration =', performance.now() - startTime);
     console.log('finish middleware #1');
   })
-  .use(next => async requestConfig => {
+  .use(async (requestConfig, next) => {
     console.log('start middleware #2');
     await next(requestConfig);
     console.log('finish middleware #2');
   })
-  .use(next => async requestConfig => {
+  .use(async (requestConfig, next) => {
     console.log('start middleware #3');
     await next(requestConfig);
     console.log('finish middleware #3');
@@ -51,5 +50,6 @@ async function testPure () {
 }
 
 window.addEventListener('click', () => {
+  console.log('Demo started, click on page to load...');
   testWrapped();
 });

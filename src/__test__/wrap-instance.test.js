@@ -54,7 +54,7 @@ describe('wrapInstance()', () => {
     const spyBefore = jest.fn();
     const spyAfter = jest.fn();
     const wrapper = wrapInstance(fakeAxiosInstance);
-    wrapper.use(next => async requestConfig => {
+    wrapper.use(async (requestConfig, next) => {
       spyBefore();
       await next(requestConfig);
       spyAfter();
