@@ -38,9 +38,9 @@ export const wrapInstance = axiosInstance => {
 
   const useMiddleware = middleware => {
     /*
-      * save reference on original method
-      * in scope of wrapped method
-      */
+     * save reference on original method
+     * in scope of wrapped method
+     */
     const originalMethod = innerMethods.request;
 
     innerMethods.request = async requestConfig => {
