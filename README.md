@@ -9,13 +9,13 @@ Axios with express/koa like middleware
 Using npm:
 
 ```bash
-npm install --save axios-middleware
+npm install --save middleware-axios
 ```
 
 Using yarn:
 
 ```bash
-yarn add axios-middleware
+yarn add middleware-axios
 ```
 
 ## Usage
