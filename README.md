@@ -1,8 +1,6 @@
 # middleware-axios
-Axios with express/koa like middleware
 
-![Coverage branches](./badges/badge-branches.svg)
-![Coverage statements](./badges/badge-statements.svg)
+Axios with express/koa like middleware
 
 ## Install
 
@@ -64,3 +62,7 @@ Each method works like in original axios instance.
 ##### axios.post(url[, data[, config]])
 ##### axios.put(url[, data[, config]])
 ##### axios.patch(url[, data[, config]])
+
+## To Do
+
+- do not clone config (it provides bugs)
