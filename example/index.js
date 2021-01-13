@@ -1,12 +1,5 @@
-import 'babel-polyfill';
 import { create } from 'axios';
-import { wrapInstance } from '../src/index.js';
-
-
-const pureApi = create({
-  baseURL: 'https://jsonplaceholder.typicode.com/',
-  timeout: 5000,
-});
+import { wrapInstance } from '../src';
 
 const wrappedApi = wrapInstance(create({
   baseURL: 'https://jsonplaceholder.typicode.com/',
@@ -15,41 +8,33 @@ const wrappedApi = wrapInstance(create({
 
 wrappedApi
   .use(async (requestConfig, next) => {
-    console.log('start middleware #1');
+    console.log('middleware #1:before');
     const startTime = performance.now();
     await next(requestConfig);
     console.log('request duration =', performance.now() - startTime);
-    console.log('finish middleware #1');
+    console.log('middleware #1:after');
   })
   .use(async (requestConfig, next) => {
-    console.log('start middleware #2');
+    console.log('middleware #2:before');
     await next(requestConfig);
-    console.log('finish middleware #2');
+    console.log('middleware #2:after');
   })
   .use(async (requestConfig, next) => {
-    console.log('start middleware #3');
+    console.log('middleware #3:before');
     await next(requestConfig);
-    console.log('finish middleware #3');
+    console.log('middleware #3:after');
   });
 
 async function testWrapped () {
-  await wrappedApi.get(
-    '/posts',
-    {
-      params: {
-        userId: 2,
-      },
-    }
-  );
+  await wrappedApi.get('/posts', {
+    params: {
+      userId: 2,
+    },
+  });
 }
 
-async function testPure () {
-  const startTime = performance.now();
-  await pureApi.get('/todos/1');
-  console.log('duration =', performance.now() - startTime);
-}
-
-window.addEventListener('click', () => {
+window.addEventListener('DOMContentLoaded', () => {
   console.log('Demo started, click on page to load...');
-  testWrapped();
+
+  window.onclick = () => testWrapped();
 });
