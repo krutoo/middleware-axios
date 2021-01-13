@@ -1,6 +1,6 @@
 {
   "name": "middleware-axios",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Axios with express/koa like middleware",
   "source": "src/index.js",
   "main": "dist/index.js",
