@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash/cloneDeep';
+import mergeConfig from 'axios/lib/core/mergeConfig';
 import { METHOD_NAMES } from './constants.js';
 import { createBoundMethod } from './helpers.js';
 
@@ -8,18 +8,15 @@ import { createBoundMethod } from './helpers.js';
  * @return {Object} Wrapper for Axios instance.
  */
 export const wrapInstance = axiosInstance => {
-  const baseConfig = cloneDeep(axiosInstance.defaults);
+  const baseConfig = mergeConfig({}, axiosInstance.defaults);
   const request = config => axiosInstance.request(config);
 
   // this methods object will be mutates by useMiddleware()
-  const innerMethods = METHOD_NAMES.reduce(
-    (kit, methodName) => {
-      // by default each method is plain request()
-      kit[methodName] = config => kit.request(config);
-      return kit;
-    },
-    { request }
-  );
+  const innerMethods = METHOD_NAMES.reduce((kit, methodName) => {
+    // by default each method is plain request()
+    kit[methodName] = config => kit.request(config);
+    return kit;
+  }, { request });
 
   /*
    * Set of methods which always calls
@@ -37,10 +34,7 @@ export const wrapInstance = axiosInstance => {
     }, {});
 
   const useMiddleware = middleware => {
-    /*
-     * save reference on original method
-     * in scope of wrapped method
-     */
+    // save reference on original method in scope of wrapped method
     const originalMethod = innerMethods.request;
 
     innerMethods.request = async requestConfig => {
@@ -50,11 +44,15 @@ export const wrapInstance = axiosInstance => {
         requestConfig,
 
         // aka next
-        requestConfig => new Promise((resolve, reject) => {
-          originalPromise = originalMethod(requestConfig);
+        nextConfig => new Promise((resolve, reject) => {
+          originalPromise = originalMethod(nextConfig);
           originalPromise.then(resolve, reject);
         })
       );
+
+      if (!originalPromise) {
+        throw Error('Looks like one of your middleware functions is not called "next"');
+      }
 
       return originalPromise;
     };
