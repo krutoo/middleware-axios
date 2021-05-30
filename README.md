@@ -21,22 +21,23 @@ yarn add middleware-axios
 Wrap axios instance (interface will be saved):
 
 ```javascript
-import { create } from 'axios';
-import { wrapInstance } from 'axios-middleware';
+import { create } from 'middleware-axios';
 
-// create wrapped instance
-const api = wrapInstance(create({
+// create wrapped instance in the same way as normal axios instance
+const api = create({
   baseURL: 'https://some-domain.com/api/',
-}));
+});
 
 // add middleware if you want
 api.use(async (requestConfig, next) => {
   // do something before request start...
+
   await next(requestConfig); // calling next is required
+
   // ...and do something after
 });
 
-// use almost like normal axios
+// use like normal axios
 api.get('/user/12345').then(response => {
   console.log(response.data);
   console.log(response.status);
@@ -54,15 +55,12 @@ console.log(api.axiosInstance); // pure instance
 The available instance methods are listed below.
 Each method works like in original axios instance.
 
-##### axios.request(config)
-##### axios.get(url[, config])
-##### axios.delete(url[, config])
-##### axios.head(url[, config])
-##### axios.options(url[, config])
-##### axios.post(url[, data[, config]])
-##### axios.put(url[, data[, config]])
-##### axios.patch(url[, data[, config]])
+- **axios.request(config)**
+- **axios.get(url[, config])**
+- **axios.delete(url[, config])**
+- **axios.head(url[, config])**
+- **axios.options(url[, config])**
+- **axios.post(url[, data[, config]])**
+- **axios.put(url[, data[, config]])**
+- **axios.patch(url[, data[, config]])**
 
-## To Do
-
-- do not clone config (it provides bugs)
