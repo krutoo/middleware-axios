@@ -1,0 +1,16 @@
+{
+  "name": "middleware-axios-example",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Example of usage middleware-axsios library",
+  "scripts": {
+    "start": "parcel serve ./src/index.html"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-typescript": "^7.13.0",
+    "parcel": "^2.0.0-beta.3.1"
+  }
+}
