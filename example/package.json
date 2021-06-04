@@ -1,7 +1,7 @@
 {
   "name": "middleware-axios-example",
   "private": true,
-  "version": "2.0.0-alpha.1",
+  "version": "0.0.0",
   "description": "Example of usage middleware-axsios library",
   "scripts": {
     "start": "parcel serve ./src/index.html"
