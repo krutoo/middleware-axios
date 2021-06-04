@@ -1,5 +1,6 @@
 {
   "name": "middleware-axios-example",
+  "private": true,
   "version": "0.0.0",
   "description": "Example of usage middleware-axsios library",
   "scripts": {
