@@ -78,17 +78,18 @@ export const create = (config: AxiosRequestConfig): AxiosInstanceWrapper => {
     request = async function <T = any, R = AxiosResponse<T>> (config: AxiosRequestConfig) {
       let promise: Promise<R> | undefined;
 
-      await middleware(config, nextConfig => new Promise((resolve, reject) => {
+      await middleware(config, nextConfig => {
         promise = wrapped(nextConfig);
 
-        // @todo remove "as any" here
-        promise.then(resolve as any, reject);
-      }));
+        // IMPORTANT: returns original promise here and don`t create another
+        return promise as any;
+      });
 
       if (!promise) {
         throw Error('Looks like one of your middleware functions is not called "next"');
       }
 
+      // IMPORTANT: returns original promise here and don`t create another
       return promise;
     };
 
