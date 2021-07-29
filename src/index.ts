@@ -62,7 +62,7 @@ export const create = (config: AxiosRequestConfig): AxiosInstanceWrapper => {
   let request = instance.request.bind(instance);
 
   const publicApi: Pick<AxiosInstance, MethodName | 'request'> = {
-    request,
+    request: (args) => request(args),
     get: (...args) => request(ArgsToConfig.withoutBody('get', args)),
     delete: (...args) => request(ArgsToConfig.withoutBody('delete', args)),
     head: (...args) => request(ArgsToConfig.withoutBody('head', args)),
