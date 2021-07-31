@@ -7,12 +7,10 @@ Axios with express/koa like middleware
 Using npm:
 
 ```bash
-npm install --save middleware-axios
-```
+# npm
+npm i -D middleware-axios
 
-Using yarn:
-
-```bash
+# or yarn
 yarn add middleware-axios
 ```
 
@@ -20,7 +18,7 @@ yarn add middleware-axios
 
 Wrap axios instance (interface will be saved):
 
-```javascript
+```js
 import { create } from 'middleware-axios';
 
 // create wrapped instance in the same way as normal axios instance
@@ -47,7 +45,6 @@ api.get('/user/12345').then(response => {
 });
 
 console.log(api.axiosInstance); // pure instance
-
 ```
 
 ### Instance methods
@@ -63,4 +60,3 @@ Each method works like in original axios instance.
 - **axios.post(url[, data[, config]])**
 - **axios.put(url[, data[, config]])**
 - **axios.patch(url[, data[, config]])**
-
