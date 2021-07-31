@@ -19,7 +19,7 @@ yarn add middleware-axios
 Wrap axios instance (interface will be saved):
 
 ```js
-import { create } from 'middleware-axios';
+import { create } from 'middleware-axios/dist';
 
 // create wrapped instance in the same way as normal axios instance
 const api = create({
