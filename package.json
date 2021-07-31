@@ -1,18 +1,18 @@
 {
   "name": "middleware-axios",
-  "version": "2.0.0-alpha.1",
+  "version": "0.0.0",
   "description": "Axios with express/koa like middleware",
   "source": "src/index.ts",
   "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "lint": "eslint ./src",
     "build": "rimraf dist && tsc -p .",
     "type-check": "tsc -p . --noEmit",
-    "example:start": "cd example && npm run start",
-    "prepublishOnly": "npm run build"
+    "example:start": "cd example && npm run start"
   },
   "repository": {
     "type": "git",
@@ -46,6 +46,7 @@
     "@typescript-eslint/parser": "^4.25.0",
     "axios": "^0.21.1",
     "eslint": "^7.27.0",
+    "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
     "typescript": "^4.2.3"
   }

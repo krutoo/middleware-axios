@@ -5,10 +5,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  plugins: [
-    'jest',
-    '@typescript-eslint',
-  ],
+  plugins: ['jest', '@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:jest/recommended',
@@ -16,21 +13,6 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   rules: {
-    indent: [
-      'error',
-      2
-    ],
-    'linebreak-style': [
-      'error',
-      'unix'
-    ],
-    quotes: [
-      'error',
-      'single'
-    ],
-    semi: [
-      'error',
-      'always',
-    ]
+    'linebreak-style': ['error', 'unix'],
   },
 };
