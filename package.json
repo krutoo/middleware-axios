@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "test": "jest",
-    "build": "rimraf dist && tsc -p .",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "type-check": "tsc -p . --noEmit",
     "example:start": "cd example && npm run start"
   },
