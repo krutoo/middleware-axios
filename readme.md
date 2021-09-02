@@ -27,10 +27,13 @@ const api = create({
 });
 
 // add middleware if you want
-api.use(async (requestConfig, next) => {
+api.use(async (config, next, defaults) => {
   // do something before request start...
 
-  await next(requestConfig); // calling next is required
+  // ...can use axios instance.defaults...
+  console.log('baseURL:', defaults.baseURL);
+
+  await next(config); // calling next is required
 
   // ...and do something after
 });
