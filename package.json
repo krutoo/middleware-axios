@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "lint": "eslint ./src",
-    "build": "rimraf dist && tsc -p .",
+    "test": "jest",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "type-check": "tsc -p . --noEmit",
     "example:start": "cd example && npm run start"
   },
@@ -30,24 +31,25 @@
   "bugs": {
     "url": "https://github.com/krutoo/middleware-axios/issues"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test:coverage"
-    }
-  },
   "homepage": "https://github.com/krutoo/middleware-axios#readme",
   "peerDependencies": {
     "axios": "^0.24.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
     "@types/axios": "^0.14.0",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "axios": "0.24.0",
+    "babel-jest": "^27.4.5",
     "eslint": "^8.4.1",
+    "jest": "^27.4.5",
+    "msw": "^0.36.3",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
+    "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   }
 }

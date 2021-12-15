@@ -14,7 +14,11 @@ export interface Next<R> {
 }
 
 export interface Middleware<R> {
-  (config: AxiosRequestConfig, next: Next<R>): Promise<void>;
+  (
+    requestConfig: AxiosRequestConfig,
+    next: Next<R>,
+    instanceDefaults: AxiosRequestConfig,
+  ): Promise<void>;
 }
 
 export interface AxiosInstanceWrapper {
@@ -56,8 +60,10 @@ const ArgsToConfig = {
   }),
 };
 
-export const create = (config: AxiosRequestConfig): AxiosInstanceWrapper => {
-  const instance = axios.create(config);
+export const create = (
+  instanceConfig: AxiosRequestConfig,
+): AxiosInstanceWrapper => {
+  const instance = axios.create(instanceConfig);
 
   let request = instance.request.bind(instance);
 
@@ -79,16 +85,20 @@ export const create = (config: AxiosRequestConfig): AxiosInstanceWrapper => {
     const wrapped = request;
 
     request = async function <T = any, R = AxiosResponse<T>>(
-      config: AxiosRequestConfig,
+      requestConfig: AxiosRequestConfig,
     ) {
       let promise: Promise<R> | undefined;
 
-      await middleware(config, nextConfig => {
-        promise = wrapped(nextConfig);
+      await middleware(
+        requestConfig,
+        nextConfig => {
+          promise = wrapped(nextConfig);
 
-        // IMPORTANT: returns original promise here and don`t create another
-        return promise as any;
-      });
+          // IMPORTANT: returns original promise here and don`t create another
+          return promise as any;
+        },
+        instance.defaults,
+      );
 
       if (!promise) {
         throw Error(

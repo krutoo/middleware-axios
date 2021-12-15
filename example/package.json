@@ -2,7 +2,7 @@
   "name": "middleware-axios-example",
   "private": true,
   "version": "0.0.0",
-  "description": "Example of usage middleware-axsios library",
+  "description": "Example of usage middleware-axios library",
   "scripts": {
     "start": "parcel serve ./src/index.html"
   },
