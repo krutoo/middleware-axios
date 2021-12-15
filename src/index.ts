@@ -1,4 +1,9 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  AxiosDefaults,
+} from 'axios';
 
 export type MethodName =
   | 'get'
@@ -17,7 +22,7 @@ export interface Middleware<R> {
   (
     requestConfig: AxiosRequestConfig,
     next: Next<R>,
-    instanceDefaults: AxiosRequestConfig,
+    instanceDefaults: AxiosDefaults,
   ): Promise<void>;
 }
 
