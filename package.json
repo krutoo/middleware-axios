@@ -13,7 +13,8 @@
     "test": "jest",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "type-check": "tsc -p . --noEmit",
-    "example:start": "cd example && npm run start"
+    "example:start": "cd example && npm run start",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -45,7 +46,9 @@
     "axios": "0.24.0",
     "babel-jest": "^27.4.5",
     "eslint": "^8.4.1",
+    "husky": "^7.0.0",
     "jest": "^27.4.5",
+    "lint-staged": "^12.1.2",
     "msw": "^0.36.3",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
