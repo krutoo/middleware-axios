@@ -1,11 +1,11 @@
 import { create } from '../../src/index.ts';
 
-const api = create({
+const client = create({
   baseURL: 'https://jsonplaceholder.typicode.com/',
   timeout: 5000,
 });
 
-api
+client
   .use(async (config, next) => {
     Logger.print('middleware #1:before');
     const startTime = performance.now();
@@ -53,7 +53,7 @@ const Logger = {
 async function performXHR() {
   Logger.print('before calling request');
 
-  await api.get('/posts', {
+  await client.get('/posts', {
     params: {
       userId: 2,
     },
