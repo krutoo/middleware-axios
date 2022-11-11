@@ -1,18 +1,6 @@
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosDefaults,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosDefaults } from 'axios';
 
-export type MethodName =
-  | 'get'
-  | 'delete'
-  | 'head'
-  | 'options'
-  | 'post'
-  | 'put'
-  | 'patch';
+export type MethodName = 'get' | 'delete' | 'head' | 'options' | 'post' | 'put' | 'patch';
 
 export interface Next<R> {
   (config: AxiosRequestConfig): Promise<AxiosResponse<R>>;
@@ -44,11 +32,7 @@ export interface AxiosInstanceWrapper {
 const ArgsToConfig = {
   withBody: (
     method: MethodName,
-    [url, data, config]: [
-      url?: string,
-      data?: any,
-      config?: AxiosRequestConfig,
-    ],
+    [url, data, config]: [url?: string, data?: any, config?: AxiosRequestConfig],
   ): AxiosRequestConfig => ({
     url,
     method,
@@ -65,9 +49,7 @@ const ArgsToConfig = {
   }),
 };
 
-export const create = (
-  instanceConfig: AxiosRequestConfig,
-): AxiosInstanceWrapper => {
+export function create(instanceConfig: AxiosRequestConfig): AxiosInstanceWrapper {
   const instance = axios.create(instanceConfig);
 
   let request = instance.request.bind(instance);
@@ -84,14 +66,10 @@ export const create = (
     patch: (...args) => request(ArgsToConfig.withBody('patch', args)),
   };
 
-  const useMiddleware = <M>(
-    middleware: Middleware<M>,
-  ): AxiosInstanceWrapper => {
+  const useMiddleware = <M>(middleware: Middleware<M>): AxiosInstanceWrapper => {
     const wrapped = request;
 
-    request = async function <T = any, R = AxiosResponse<T>>(
-      requestConfig: AxiosRequestConfig,
-    ) {
+    request = async function <T = any, R = AxiosResponse<T>>(requestConfig: AxiosRequestConfig) {
       let promise: Promise<R> | undefined;
 
       await middleware(
@@ -106,9 +84,7 @@ export const create = (
       );
 
       if (!promise) {
-        throw Error(
-          'Looks like one of your middleware functions is not called "next"',
-        );
+        throw Error('Looks like one of your middleware functions is not called "next"');
       }
 
       // IMPORTANT: returns original promise here and don`t create another
@@ -125,4 +101,4 @@ export const create = (
   };
 
   return wrapper;
-};
+}
