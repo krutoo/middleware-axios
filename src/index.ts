@@ -15,7 +15,7 @@ export interface Middleware<R> {
   (
     requestConfig: AxiosRequestConfig,
     next: Next<R>,
-    instanceDefaults: CreateAxiosDefaults,
+    instanceDefaults: AxiosInstance['defaults'],
   ): Promise<void>;
 }
 
