@@ -1,4 +1,9 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosDefaults } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  CreateAxiosDefaults,
+} from 'axios';
 
 export type MethodName = 'get' | 'delete' | 'head' | 'options' | 'post' | 'put' | 'patch';
 
@@ -10,7 +15,7 @@ export interface Middleware<R> {
   (
     requestConfig: AxiosRequestConfig,
     next: Next<R>,
-    instanceDefaults: AxiosDefaults,
+    instanceDefaults: CreateAxiosDefaults,
   ): Promise<void>;
 }
 
@@ -49,7 +54,7 @@ const ArgsToConfig = {
   }),
 };
 
-export function create(instanceConfig: AxiosRequestConfig): AxiosInstanceWrapper {
+export function create(instanceConfig: CreateAxiosDefaults): AxiosInstanceWrapper {
   const instance = axios.create(instanceConfig);
 
   let request = instance.request.bind(instance);
