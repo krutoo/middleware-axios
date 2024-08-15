@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "./src",
+    "outDir": "./dist/esm",
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["./src/"],
+  "exclude": ["node_modules", "src/**/*.test.ts", "src/mocks/**/*"]
+}

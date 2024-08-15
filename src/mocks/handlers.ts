@@ -1,13 +1,13 @@
-import { rest } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 export const handlers = [
-  rest.get('https://api.backend.dev/user', (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
+  http.get('https://api.backend.dev/user', () => {
+    return HttpResponse.json(
+      {
         name: 'John Doe',
         age: 23,
-      }),
+      },
+      { status: 200 },
     );
   }),
 ];

@@ -7,5 +7,5 @@ dist
 .parcel-cache
 .vscode
 
-# npm pack default output
-middleware-axios-0.0.0.tgz
+# npm pack output
+*.tgz
