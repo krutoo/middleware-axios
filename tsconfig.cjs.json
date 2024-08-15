@@ -1,7 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./src"
+    "noEmit": false,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "./src",
+    "outDir": "./dist/cjs",
+    "module": "CommonJS"
   },
   "include": ["./src/"],
   "exclude": ["node_modules", "src/**/*.test.ts", "src/mocks/**/*"]

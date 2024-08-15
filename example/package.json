@@ -1,14 +1,19 @@
 {
   "name": "middleware-axios-example",
+  "type": "module",
   "private": true,
   "version": "0.0.0",
-  "description": "Example of usage middleware-axios library",
   "scripts": {
-    "start": "parcel serve ./src/index.html"
+    "dev": "rsbuild dev --open",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview"
   },
-  "author": "",
-  "license": "MIT",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
   "devDependencies": {
-    "parcel": "^2.12.0"
+    "@rsbuild/core": "1.0.1-beta.13",
+    "@rsbuild/plugin-react": "1.0.1-beta.13"
   }
 }

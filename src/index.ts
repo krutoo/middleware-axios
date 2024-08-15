@@ -1,8 +1,8 @@
 import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  CreateAxiosDefaults,
+  type AxiosInstance,
+  type AxiosRequestConfig,
+  type AxiosResponse,
+  type CreateAxiosDefaults,
 } from 'axios';
 
 export type MethodName = 'get' | 'delete' | 'head' | 'options' | 'post' | 'put' | 'patch';
